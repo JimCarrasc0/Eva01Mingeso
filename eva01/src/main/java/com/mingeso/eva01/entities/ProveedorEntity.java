@@ -17,7 +17,7 @@ import lombok.NonNull;
 public class ProveedorEntity {
     @Id
     @NonNull
-    private Integer Id;
+    private Integer id;
     private String Nombre;
     private String Categoria;
     private Boolean Retencion;

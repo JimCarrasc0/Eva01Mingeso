@@ -12,9 +12,9 @@ public interface ProveedorRepository extends JpaRepository<ProveedorEntity,Integ
     @Query("select e from ProveedorEntity e where e.Nombre =: Nombre")
     ProveedorEntity findByNameCustomQuery(@Param("Nombre") String Nombre);
 
-    @Query("select e.Categoria from ProveedorEntity e where e.Id =: Id")
-    String findCategory(@Param("Id") Integer Id);
+    @Query("select e.Categoria from ProveedorEntity e where e.id =: Id")
+    String findCategory(@Param("Id") Integer id);
 
-    @Query("select e from ProveedorEntity e where e.Id = :Id")
-    ProveedorEntity findProveedorById(@Param("Id")Integer Id);
+    @Query("select e from ProveedorEntity e where e.id = :Id")
+    ProveedorEntity findProveedorById(@Param("Id")Integer id);
 }
