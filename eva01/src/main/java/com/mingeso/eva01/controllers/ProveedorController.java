@@ -49,6 +49,7 @@ import com.mingeso.eva01.entities.ProveedorEntity;
 import com.mingeso.eva01.services.ProveedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -68,15 +69,23 @@ public class ProveedorController {
     public String nuevoProveedor(@RequestParam("Id") Integer Id,
                                  @RequestParam("Nombre") String Nombre,
                                  @RequestParam("Categoria") String Categoria,
-                                 @RequestParam("Retencion") Boolean Retencion){
+                                 @RequestParam("Retencion") String Retencion){
+        System.out.println("nuevoprov");
         proveedorService.saveProveedor(Id, Nombre, Categoria, Retencion);
         return "redirect:/nuevo-proveedor";
     }
 
-    @GetMapping("lista-proveedores")
+    /*@GetMapping("lista-proveedores")
     @ResponseBody
     public List<ProveedorEntity> listaProveedores() {
         return proveedorService.obtenerProveedores();
+    }*/
+
+    @GetMapping("proveedores")
+    public String listaProveedores(Model model){
+        List<ProveedorEntity> proveedores = proveedorService.obtenerProveedores();
+        model.addAttribute("proveedores", proveedores);
+        return "lista-proveedores";
     }
 
     @GetMapping("proveedor/{id}")
@@ -85,9 +94,10 @@ public class ProveedorController {
         return proveedorService.getProveedor(id);
     }
 
-    @GetMapping("categoria/{id}")
+    @GetMapping("proveedor/categoria/{id}")
     @ResponseBody
     public String getCategoria(@PathVariable Integer id) {
+        System.out.println("holaaaa");
         return proveedorService.getCategoria(id);
     }
 

@@ -20,5 +20,5 @@ public class ProveedorEntity {
     private Integer id;
     private String Nombre;
     private String Categoria;
-    private Boolean Retencion;
+    private String Retencion;
 }
