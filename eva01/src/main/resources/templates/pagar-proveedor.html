@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="../static/style.css" type="text/css" th:href="@{/style.css}" rel="stylesheet" />
+    <div class="color-bar"></div>
+	
+	<script>
+    function redirectToPayment() {
+      var inputValue = document.getElementById('id').value;
+      if (inputValue) {
+        window.location.href = 'pagar/' + inputValue;
+      }
+    }
+  </script>
+
+</head>
+<body>
+<h1>Información proveedor</h1>
+<div class = "container">
+    <table th:border = "0" class = "content-table">
+        <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Categoria</th>
+            <th>Retención</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="proveedores:${proveedores}">
+            <td th:text="${proveedores.proveedorId}"></td>
+            <td th:text="${proveedores.Nombre}"></td>
+            <td th:text="${proveedores.Categoria}"></td>
+            <td th:text="${proveedores.Retencion}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+	<div class="formcontainer">
+	<input type="number" id = "id" placeholder="Ingrese el código del proveedor" name="id" required minlength="5">
+	<div class="button-container"></div>
+	<button onclick="redirectToPayment()">Calcular pago</button>
+	</div>
+<div class="button-container">
+    	<button class="button3" onclick="window.location.href='/proveedores'">Ver Listado</button>
+    	<button class="button2" onclick="history.back()">Volver</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link href="../static/style.css" type="text/css" th:href="@{/style.css}" rel="stylesheet" />
+    <div class="color-bar">
+		<ul>
+		<li><a class="active" href="/">MilkStgo</a></li>
+		</ul>
+	</div>
+	
+</head>
+<body>
+	<h1>Realizar Pago</h1>
+<div class = "container">
+    <table th:border = "0" class = "content-table">
+        <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre Proveedor</th>
+            <th>Kilos total</th>
+            <th>%Variación Leche</th>
+            <th>%Variación Grasa</th>
+            <th>%Variación ST</th>
+            <th>Pago por Leche</th>
+            <th>Pago por Grasa</th>
+            <th>Pago por Solidos Totales</th>
+            <th>Bonificación por Frecuencia</th>
+            <th>Dcto. Variación Leche</th>
+            <th>Dcto. Variación Grasa</th>
+            <th>Dcto. Variación ST</th>
+            <th>Pago TOTAL</th>
+            <th>Monto Retención</th>
+            <th>Monto FINAL</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="reporte:${reporte}">
+            <td th:text="${reporte.proveedorId}"></td>
+            <td th:text="${reporte.nombreProveedor}"></td>
+            <td th:text="${reporte.totalKilos}"></td>
+            <td th:text="${reporte.varLeche}"></td>
+            <td th:text="${reporte.varGrasa}"></td>
+            <td th:text="${reporte.varSolido}"></td>
+            <td th:text="${reporte.PagoLeche}"></td>
+            <td th:text="${reporte.PagoGrasa}"></td>
+            <td th:text="${reporte.PagoSolido}"></td>
+            <td th:text="${reporte.freqBonus}"></td>
+            <td th:text="${reporte.descLeche}"></td>
+            <td th:text="${reporte.descGrasa}"></td>
+            <td th:text="${reporte.descSolido}"></td>
+            <td th:text="${reporte.pagoTotal}"></td>
+            <td th:text="${reporte.retencion}"></td>
+            <td th:text="${reporte.pagoFinal}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

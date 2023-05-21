@@ -11,23 +11,21 @@
 	
 </head>
 <body>
-<h1>Listado de proveedores</h1>
+<h1>Valores de grasa y sólido</h1>
 <div class = "container">
     <table th:border = "0" class = "content-table">
         <thead>
         <tr>
-            <th>Código</th>
-            <th>Nombre</th>
-            <th>Categoria</th>
-            <th>Retención</th>
+            <th>Código proveedor</th>
+            <th>Grasa</th>
+            <th>Sólido</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="proveedores:${proveedores}">
-            <td th:text="${proveedores.proveedorId}"></td>
-            <td th:text="${proveedores.Nombre}"></td>
-            <td th:text="${proveedores.Categoria}"></td>
-            <td th:text="${proveedores.Retencion}"></td>
+        <tr th:each="leche:${leche}">
+            <td th:text="${leche.proveedorId}"></td>
+            <td th:text="${leche.grasa}"></td>
+            <td th:text="${leche.solido}"></td>
         </tr>
         </tbody>
     </table>
@@ -35,7 +33,7 @@
 <br>
 <br>
 <div class="button-container">
-	<button onclick="window.location.href='/nuevo-proveedor'">Ingresar Proveedor</button>
+	<button onclick="window.location.href='/milkupload'">Subir Archivo</button>
 	<button class="button2" onclick="history.back()">Volver</button>
 </div>
 </body>

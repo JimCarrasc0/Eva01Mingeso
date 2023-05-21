@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="../static/style.css" type="text/css" th:href="@{/style.css}" rel="stylesheet" />
+  <div class="color-bar">
+		<ul>
+		<li><a class="active" href="/">MilkStgo</a></li>
+		</ul>
+	</div>
+
+</head>
+<body>
+<h1>Listado Acopio</h1>
+<div class = "container">
+  <table th:border = "0" class = "content-table">
+    <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Turno</th>
+      <th>Proveedor</th>
+      <th>Kilos de Leche</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="datos:${datos}">
+      <td th:text="${datos.fecha}"></td>
+      <td th:text="${datos.turno}"></td>
+      <td th:text="${datos.proveedorId}"></td>
+      <td th:text="${datos.kgLeche}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<br>
+<br>
+<div class="button-container">
+  <button onclick="window.location.href='/fileupload'">Subir Archivo</button>
+  <button class="button2" onclick="history.back()">Volver</button>
+</div>
+</body>
+</html>

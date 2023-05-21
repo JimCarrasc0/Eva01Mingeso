@@ -1,4 +1,10 @@
-INSERT INTO proveedores(Id,Nombre,Categoria,Retencion) VALUES  (12345,'Lache','A','Si');
-INSERT INTO proveedores(Id,Nombre,Categoria,Retencion) VALUES  (67890,'Vía no Lactea','C','No');
-INSERT INTO proveedores(Id,Nombre,Categoria,Retencion) VALUES  (33012,'Anti-leche','B','No');
-INSERT INTO proveedores(Id,Nombre,Categoria,Retencion) VALUES  (69420,'La vía lechosa','D','Si');
+insert into proveedores (proveedor_id, categoria, nombre, retencion) values ('45110', 'C', 'Wehner, Heller and Quitzon', 'No');
+insert into proveedores (proveedor_id, categoria, nombre, retencion) values ('88018', 'D', 'Pollich-Bergstrom', 'No');
+insert into proveedores (proveedor_id, categoria, nombre, retencion) values ('59794', 'C', 'Pagac, Muller and Heathcote', 'No');
+insert into proveedores (proveedor_id, categoria, nombre, retencion) values ('09200', 'A', 'Boehm and Sons', 'No');
+insert into proveedores (proveedor_id, categoria, nombre, retencion) values ('74166', 'C', 'Herzog-Runte', 'Si');
+insert into proveedores (proveedor_id, categoria, nombre, retencion) values ('82830', 'C', 'Ryan-Reinger', 'Si');
+insert into proveedores (proveedor_id, categoria, nombre, retencion) values ('82723', 'A', 'Toy-Bogisich', 'Si');
+insert into proveedores (proveedor_id, categoria, nombre, retencion) values ('01983', 'D', 'Murray-Reinger', 'No');
+insert into proveedores (proveedor_id, categoria, nombre, retencion) values ('98531', 'B', 'Bartell-Okuneva', 'Si');
+insert into proveedores (proveedor_id, categoria, nombre, retencion) values ('13874', 'B', 'Casper, Wyman and Jast', 'No');

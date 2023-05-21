@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link href="../static/style.css" type="text/css" th:href="@{/style.css}" rel="stylesheet" />
+    <div class="color-bar"></div>
+	
+</head>
+<body>
+  	<h1>Sube tu archivo</h1>
+  	<p align="center">Se recomienda que el formato del archivo sea Id del proveedor, cantidad de grasa y cantidad de sólido por proveedor.</p>
+  	<p align="center">Se espera un archivo con nombre "Grasa.csv", en .csv los datos se separan mediante ";" (Punto y coma).</p>
+  	<br>
+	<h2>Cargar archivo</h2>
+	<br>
+	<div class="container">
+		<form th:action="@{/milkupload}" method="POST" enctype="multipart/form-data" >
+		  <input type="file" class="form-control" name="file" accept=".csv">
+			<div class="container">
+		  <input class="btn" type="submit" value="Subir el archivo">
+			</div>
+		</form>
+    	<u><h2 th:text="${mensaje}"></h2> </u>
+  	</div>
+	<div class="container">
+		<button class="button2" onclick="history.back()">Volver</button>
+	</div>
+
+</body>
+</html>

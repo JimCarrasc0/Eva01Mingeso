@@ -2,11 +2,26 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
-    <h1>Atención a todas las unidades llamado de emergencia al sistema 9 1 1 hombre moribundo con presunto ataque cardiaco</h1>
+	<link href="../static/style.css" type="text/css" th:href="@{/style.css}" rel="stylesheet" />
+	
+	<div class="color-bar">
+		<ul>
+		<li><a class="active" href="/">Home</a></li>
+		</ul>
+	</div>
+
 </head>
 <body>
-    <p>ven y sana mi dolooooooor</p>
-    <a href="nuevo-proveedor">nuevoooo</a>
+    <h1>MilkStgo</h1>
+    <p align="center">Plataforma de gestión de servicios proveedores de Lácteos.</p>
+    <div class="button-container">
+        <button onclick="window.location.href='/nuevo-proveedor'">Ingresar nuevo proveedor</button>
+        <button onclick="window.location.href='/proveedores'">Ver listado de proveedores</button>
+        <button onclick="window.location.href='/fileupload'">Subir archivo Acopio</button>
+        <button onclick="window.location.href='/fileinfo'">Ver acopio</button>
+        <button onclick="window.location.href='/milkupload'">Subir archivo de grasa</button>
+        <button onclick="window.location.href='/milkinfo'">Ver valores de grasa</button>
+        <button onclick="window.location.href='/pagar'">Gestionar pago</button>
+    </div>
 </body>
 </html>
