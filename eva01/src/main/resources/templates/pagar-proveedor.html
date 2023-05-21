@@ -3,7 +3,11 @@
 
 <head>
     <link href="../static/style.css" type="text/css" th:href="@{/style.css}" rel="stylesheet" />
-    <div class="color-bar"></div>
+    <div class="color-bar">
+		<ul>
+		<li><a class="active" href="/">MilkStgo</a></li>
+		</ul>
+	</div>
 	
 	<script>
     function redirectToPayment() {
@@ -36,15 +40,12 @@
         </tr>
         </tbody>
     </table>
-</div>
+	</div>
 	<div class="formcontainer">
 	<input type="number" id = "id" placeholder="Ingrese el código del proveedor" name="id" required minlength="5">
-	<div class="button-container"></div>
-	<button onclick="redirectToPayment()">Calcular pago</button>
-	</div>
-<div class="button-container">
-    	<button class="button3" onclick="window.location.href='/proveedores'">Ver Listado</button>
-    	<button class="button2" onclick="history.back()">Volver</button>
+	<div class="button-container">
+    <button onclick="redirectToPayment()">Calcular pago</button>
+	<button class="button2" onclick="history.back()">Volver</button>
 	</div>
 </body>
 </html>
