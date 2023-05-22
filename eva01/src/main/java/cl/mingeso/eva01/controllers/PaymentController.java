@@ -39,7 +39,6 @@ public class PaymentController {
     @GetMapping ("pagar/{proveedorId}")
     public RedirectView calcularPago(@PathVariable String proveedorId, Model model){
         pago = paymentService.calcularCostoProveedor(proveedorId);
-        //model.addAttribute("pago", pago);
         return new RedirectView("/realizar-pago");
     }
 
@@ -47,22 +46,22 @@ public class PaymentController {
     public String realizarPago(Model model){
 
         Reporte reporte=new Reporte();
-        String Id=pago.getProveedorId();
+        String proveedorId =pago.getProveedorId();
 
-        ProveedorEntity proveedor = proveedorRepository.findProveedorById(Id);
+        ProveedorEntity proveedor = proveedorRepository.findProveedorById(proveedorId);
 
-        reporte.setProveedorId(Id);
+        reporte.setProveedorId(proveedorId);
         reporte.setNombreProveedor(proveedor.getNombre());
         reporte.setTotalKilos(pago.getKilos());
 
-        List<Object[]> varLeches = paymentRepository.getVariacionKgLecheByProveedorId(Id);
+        List<Object[]> varLeches = paymentRepository.getVariacionKgLecheByProveedorId(proveedorId);
         float varLeche = 0;
         if (varLeches.size() > 1){
             varLeche =(Float) varLeches.get(varLeches.size()-1)[1];
         }
         reporte.setVarLeche(varLeche);
-        reporte.setVarGrasa((Float) paymentRepository.getVariacionGrasaByProveedorId(Id).get(1)[1]);
-        reporte.setVarSolido((Float) paymentRepository.getVariacionSolidoByProveedorId(Id).get(1)[1]);
+        reporte.setVarGrasa((Float) paymentRepository.getVariacionGrasaByProveedorId(proveedorId).get(1)[1]);
+        reporte.setVarSolido((Float) paymentRepository.getVariacionSolidoByProveedorId(proveedorId).get(1)[1]);
 
         reporte.setPagoLeche(pago.getPagoLeche());
         reporte.setPagoGrasa(pago.getPagoGrasa());

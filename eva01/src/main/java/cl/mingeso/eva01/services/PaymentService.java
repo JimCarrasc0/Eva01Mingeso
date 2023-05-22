@@ -22,29 +22,18 @@ public class PaymentService {
     public PaymentEntity calcularCostoProveedor(String proveedorId){
         PaymentEntity pago = new PaymentEntity();
         Float leche=paymentRepository.getLecheProveedor(proveedorId);
-
         Float gt = paymentRepository.getGrasaProveedor(proveedorId);
-
         Float st = paymentRepository.getSolidoProveedor(proveedorId);
-
         String categoria=proveedorRepository.findCategoryById(proveedorId);
-
         String retencion=proveedorRepository.findRetencionById(proveedorId);
-
         ArrayList<String> turnos = paymentRepository.getTurnosProveedor(proveedorId);
-
-
         List<Object[]> varLeches = paymentRepository.getVariacionKgLecheByProveedorId(proveedorId);
         List<Object[]> varGrasas = paymentRepository.getVariacionGrasaByProveedorId(proveedorId);
         List<Object[]> varSolidos =paymentRepository.getVariacionSolidoByProveedorId(proveedorId);
 
-
         pago.setProveedorId(proveedorId);
         pago.setKilos(leche);
-
-
         int precioCategoria = 0;
-        float descuento=0;
 
         /** Precios Categoría:
          * A=700
@@ -56,14 +45,20 @@ public class PaymentService {
         switch (categoria){
             case "A":
                 precioCategoria = 700;
+                break;
             case "B":
                 precioCategoria = 550;
+                break;
             case "C":
                 precioCategoria = 400;
+                break;
             case "D":
                 precioCategoria = 250;
-
                 break;
+            default:
+                precioCategoria = 0;
+                break;
+
         }
 
         /** Precios x Grasa:
@@ -120,9 +115,11 @@ public class PaymentService {
             }
         }
 
+
         float bonus = leche * precioTurno * precioCategoria;
 
         float pagoAcopio= prelim + bonus;
+
 
 
         /**Descuentos
@@ -136,19 +133,18 @@ public class PaymentService {
 
         float varLeche = 0;
         if (varLeches.size() > 1){
-            varLeche =(Float) varLeches.get(varLeches.size()-1)[1];
+            varLeche =1- (Float) varLeches.get(varLeches.size()-1)[1];
         }
 
 
-        if(varLeche<0){
-            if (-varLeche >= 9 && -varLeche <= 25) {
-                descLeche+= 0.07;
-            } else if (-varLeche >= 26 && -varLeche <= 45) {
-                descLeche+= 0.15;
-            } else if (-varLeche <= 100){
-                descLeche+= 0.3;
-            }
+        if (varLeche >= 9 && varLeche <= 25) {
+            descLeche+= 0.07;
+        } else if (varLeche >= 26 && varLeche <= 45) {
+            descLeche+= 0.15;
+        } else if (varLeche <= 100){
+            descLeche+= 0.3;
         }
+
 
          /** %variacion negativa grasa
          * 0-15 = 0%
@@ -158,17 +154,20 @@ public class PaymentService {
          */
 
         float descGrasa=0;
-        float varGrasa = (Float) varGrasas.get(1)[1];
-
-        if(varGrasa<0){
-            if (-varGrasa >= 16 && -varGrasa <= 25) {
-                descGrasa+= 0.12;
-            } else if (-varGrasa >= 26 && -varGrasa <= 40) {
-                descGrasa+= 0.2;
-            } else if (-varGrasa <= 100){
-                descGrasa+= 0.3;
-            }
+        float varGrasa = 0;
+        if (varGrasas.size() > 1){
+            varGrasa =1 - (Float) varGrasas.get(varGrasas.size()-1)[1];
         }
+
+
+        if (varGrasa >= 16 && varGrasa <= 25) {
+            descGrasa+= 0.12;
+        } else if (varGrasa >= 26 && varGrasa <= 40) {
+            descGrasa+= 0.2;
+        } else if (varGrasa <= 100){
+            descGrasa+= 0.3;
+        }
+
 
 
         /** %variacion negativa solido
@@ -179,17 +178,19 @@ public class PaymentService {
         */
 
         float descSolido=0;
-        float varSolido = (Float) varSolidos.get(1)[1];
-
-        if(varSolido<0){
-            if (-varSolido >= 7 && -varSolido <= 12) {
-                descSolido+= 0.18;
-            } else if (-varSolido >= 13 && -varSolido <= 35) {
-                descSolido+= 0.27;
-            } else if (-varSolido <= 100){
-                descSolido+= 0.45;
-            }
+        float varSolido = 0;
+        if (varSolidos.size() > 1){
+            varSolido =1 - (Float) varSolidos.get(varSolidos.size()-1)[1];
         }
+
+        if (varSolido >= 7 && varSolido <= 12) {
+            descSolido+= 0.18;
+        } else if (varSolido >= 13 && varSolido <= 35) {
+            descSolido+= 0.27;
+        } else if (varSolido <= 100){
+            descSolido+= 0.45;
+        }
+
 
         float descuentos = (descLeche+descGrasa+descSolido) * pagoAcopio;
 

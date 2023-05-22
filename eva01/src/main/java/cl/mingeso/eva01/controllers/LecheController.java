@@ -28,11 +28,9 @@ public class LecheController {
 
     @PostMapping("milkupload")
     public RedirectView subirArchivo(@RequestParam("file")MultipartFile file, RedirectAttributes redirectAttributes){
-        System.out.println("lechecontrolador");
         importar.guardar(file);
         redirectAttributes.addFlashAttribute("mensaje","El archivo se cargó correctamente");
         importar.leerCsv("Grasa.csv");
-        System.out.println("guardá la lexe");
         return new RedirectView("/milkupload");
     }
     @GetMapping("milkinfo")

@@ -16,8 +16,8 @@ public class ProveedorService {
     * Método para guardar 1 proveedor
     * ingreso los parámetros solicitados para el correcto ingreso de datos a la tabla.
     */
-    public void saveProveedor(String Id, String Nombre, String Categoria, String Retencion){
-        ProveedorEntity proveedor = new ProveedorEntity(Id,Nombre,Categoria,Retencion);
+    public void saveProveedor(String id, String nombre, String categoria, String retencion){
+        ProveedorEntity proveedor = new ProveedorEntity(id, nombre, categoria, retencion);
         proveedorRepository.save(proveedor);
     }
 
@@ -31,15 +31,15 @@ public class ProveedorService {
     /*
      * Método para poder obtener la categoría de un proveedor
      */
-    public String getCategoria(String Id){
-        return proveedorRepository.findCategoryById(Id);
+    public String getCategoria(String id){
+        return proveedorRepository.findCategoryById(id);
     }
 
     /*
      * Método para poder obtener la información de un proveedor
      */
-    public ProveedorEntity getProveedor(String Id){
-        return proveedorRepository.findProveedorById(Id);
+    public ProveedorEntity getProveedor(String id){
+        return proveedorRepository.findProveedorById(id);
     }
 
 }

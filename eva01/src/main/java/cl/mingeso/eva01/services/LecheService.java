@@ -20,12 +20,12 @@ import java.util.ArrayList;
 @Service
 public class LecheService {
     @Autowired
-    private LecheRepository datosLeche;
+    private LecheRepository lecheRepository;
 
     private final Logger logg = LoggerFactory.getLogger(LecheService.class);
 
     public ArrayList<LecheEntity> obtenerDatos(){
-        return (ArrayList<LecheEntity>) datosLeche.findAll();
+        return (ArrayList<LecheEntity>) lecheRepository.findAll();
     }
 
     @Generated
@@ -43,7 +43,6 @@ public class LecheService {
                     logg.error("ERROR", e);
                 }
             }
-            System.out.println("aaaaaaaaaa");
             return "Archivo guardado con éxito";
         }
         else {
@@ -52,7 +51,7 @@ public class LecheService {
     }
 
     public void guardarDatos(LecheEntity datos){
-        datosLeche.save(datos);
+        lecheRepository.save(datos);
     }
 
     public void guardarDB(String proveedorId, String grasa, String solido){
@@ -67,7 +66,6 @@ public class LecheService {
 
     @Generated
     public void leerCsv(String direccion){
-        String texto="";
         BufferedReader bf = null;
 
         try {
@@ -90,7 +88,7 @@ public class LecheService {
     }
 
     public void eliminarDatos(ArrayList<LecheEntity> datos){
-        datosLeche.deleteAll(datos);
+        lecheRepository.deleteAll(datos);
     }
 
 }

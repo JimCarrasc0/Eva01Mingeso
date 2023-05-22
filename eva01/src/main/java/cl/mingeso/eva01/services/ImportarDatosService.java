@@ -68,7 +68,7 @@ public class ImportarDatosService {
             Date fexa = format.parse(fecha);
             datos.setFecha(new java.sql.Date(fexa.getTime()));
         } catch (ParseException e) {
-            e.printStackTrace();
+            logg.error("ERROR",e);
         }
 
         datos.setTurno(turno);

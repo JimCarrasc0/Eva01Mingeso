@@ -18,7 +18,7 @@ public class ProveedorEntity {
     @Id
     @NonNull
     private String proveedorId;
-    private String Nombre;
-    private String Categoria;
-    private String Retencion;
+    private String nombre;
+    private String categoria;
+    private String retencion;
 }

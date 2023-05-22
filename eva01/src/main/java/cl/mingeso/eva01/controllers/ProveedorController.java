@@ -24,11 +24,11 @@ public class ProveedorController {
 
     @PostMapping("nuevo-proveedor")
     @ResponseBody
-    public RedirectView nuevoProveedor(@RequestParam("id") String Id,
-                                       @RequestParam("nombre") String Nombre,
-                                       @RequestParam("categoria") String Categoria,
-                                       @RequestParam("retencion") String Retencion){
-        proveedorService.saveProveedor(Id, Nombre, Categoria, Retencion);
+    public RedirectView nuevoProveedor(@RequestParam("id") String id,
+                                       @RequestParam("nombre") String nombre,
+                                       @RequestParam("categoria") String categoria,
+                                       @RequestParam("retencion") String retencion){
+        proveedorService.saveProveedor(id, nombre, categoria, retencion);
         return new RedirectView("/nuevo-proveedor");
     }
     @GetMapping("proveedores")
