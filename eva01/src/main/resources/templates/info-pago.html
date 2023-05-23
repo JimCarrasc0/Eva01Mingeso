@@ -49,9 +49,9 @@
             <td th:text="${reporte.descLeche}"></td>
             <td th:text="${reporte.descGrasa}"></td>
             <td th:text="${reporte.descSolido}"></td>
-            <td th:text="${reporte.pagoTotal}"></td>
+            <td th:text="${-reporte.pagoTotal}"></td>
             <td th:text="${reporte.retencion}"></td>
-            <td th:text="${reporte.pagoFinal}"></td>
+            <td th:text="${-reporte.pagoFinal}"></td>
         </tr>
         </tbody>
     </table>

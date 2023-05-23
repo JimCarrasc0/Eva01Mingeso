@@ -52,6 +52,17 @@ class ImportarDatosServiceTest {
 
         verify(dataRepository, times(1)).save(any(ImportarDatosEntity.class));
     }
+    @Test
+    void testGuardarDB2() {
+        String fecha = "23/01";
+        String turno = "M";
+        String proveedorId = "12345";
+        String kgLeche = "10.0";
+
+        importarDatosService.guardarDB(fecha, turno, proveedorId, kgLeche);
+
+        verify(dataRepository, times(1)).save(any(ImportarDatosEntity.class));
+    }
 
     @Test
     void testEliminarData() {

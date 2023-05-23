@@ -133,7 +133,7 @@ public class PaymentService {
 
         float varLeche = 0;
         if (varLeches.size() > 1){
-            varLeche =1- (Float) varLeches.get(varLeches.size()-1)[1];
+            varLeche = - (Float) varLeches.get(varLeches.size()-1)[1];
         }
 
 
@@ -156,7 +156,7 @@ public class PaymentService {
         float descGrasa=0;
         float varGrasa = 0;
         if (varGrasas.size() > 1){
-            varGrasa =1 - (Float) varGrasas.get(varGrasas.size()-1)[1];
+            varGrasa = - (Float) varGrasas.get(varGrasas.size()-1)[1];
         }
 
 
@@ -180,7 +180,7 @@ public class PaymentService {
         float descSolido=0;
         float varSolido = 0;
         if (varSolidos.size() > 1){
-            varSolido =1 - (Float) varSolidos.get(varSolidos.size()-1)[1];
+            varSolido = - (Float) varSolidos.get(varSolidos.size()-1)[1];
         }
 
         if (varSolido >= 7 && varSolido <= 12) {
