@@ -1,0 +1,54 @@
+pipeline{
+    agent any
+    tools{
+        maven "maven"
+    }
+    stages{
+        stage("Build JAR File"){
+            steps{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JimCarrasc0/Eva01Mingeso']])
+                dir("eva01"){
+                    sh "mvn clean install"
+                }
+            }
+        }
+        stage("Test"){
+            steps{
+                dir("eva01"){
+                    sh "mvn test"
+                }
+            }
+        }
+        stage("SQ Analysis"){
+            steps{
+                dir("eva01"){
+                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=eva01 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_ea845a4424e893182806e0de6ca0df580eac86a4"
+                }
+            }
+        }
+        stage("Build Docker Image"){
+            steps{
+                dir("eva01"){
+                    sh "docker build -t jimcarrasc0/eva01 ."
+                }
+            }
+        }
+        stage("Push Docker Image"){
+            steps{
+                dir("eva01"){
+                    withCredentials([string(credentialsId: 'dckrhubpassword', variable: 'dckpass')]) {
+                        sh "docker login -u jimcarrasc0 -p ${dckpass}"
+                    }
+                    sh "docker push jimcarrasc0/eva01"
+                }
+            }
+        }
+    }
+    post{
+        always{
+            dir("eva01"){
+                sh "docker logout"
+            }
+        }
+    }
+}

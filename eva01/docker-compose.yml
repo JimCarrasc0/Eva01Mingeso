@@ -1,5 +1,16 @@
 version: "3.8"
 services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app1
+
   postgres-db:
     image: postgres:latest
     restart: always
@@ -8,19 +19,19 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin
     ports:
-      - '5432:5432'
+      - "5432:5432"
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
       interval: 5s
       retries: 10
 
-  app:
-    container_name: eva01
+  app1:
+    container_name: eva01-1
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8090:8090"
+      - "8091:8090"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/bdEva01?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSl=false
       - SPRING_DATASOURCE_USERNAME=postgres
